@@ -1,6 +1,7 @@
 import React from "react";
-import Player1 from "./components/Player/Player1";
-import Player2 from "./components/Player/Player2";
+import Player1 from "./Player/Player1";
+import Player2 from "./Player/Player2";
+import Winner from "./Winner";
 
 const App = ({ handlePlayer1, handlePlayer2, handleReset, player1Serve, winner }) => (
   <React.Fragment>
@@ -16,7 +17,9 @@ const App = ({ handlePlayer1, handlePlayer2, handleReset, player1Serve, winner }
     </div>
 
     { /* winner message */}
-    {winner !== "" ? (<h2 className="alert alert-success">Player { winner} wins!</h2>) : null}
+    <div>
+      <Winner winner={winner} />
+    </div>
 
     < hr />
 
