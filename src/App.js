@@ -1,6 +1,8 @@
 import React from "react";
+import Player1 from "./components/Player/Player1";
+import Player2 from "./components/Player/Player2";
 
-const App = ({ player1, player2, handlePlayer1, handlePlayer2, handleReset, player1Serve }) => (
+const App = ({ handlePlayer1, handlePlayer2, handleReset, player1Serve, winner }) => (
   <React.Fragment>
     {/* header */}
     <header className="jumbotron mt-4 mb-0">
@@ -9,38 +11,17 @@ const App = ({ player1, player2, handlePlayer1, handlePlayer2, handleReset, play
 
     {/* scores */}
     <div className="row mb-4">
-      <div className="col-md-6 mt-4">
-        <div className={"card text-center " + (player1Serve ? "bg-dark text-white" : "")}>
-          <h5 className="card-header">Player 1</h5>
-          <div className="card-body">
-            <p className="card-text display-1">{player1}</p>
-          </div>
-          <div className="card-footer">
-            <button className="form-control btn btn-success" onClick={handlePlayer1}>+</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="col-md-6 mt-4">
-        <div className={"card text-center " + (player1Serve ? "" : "bg-dark text-white")}>
-          <h5 className="card-header">Player 2</h5>
-          <div className="card-body">
-            <p className="card-text display-1">{player2}</p>
-          </div>
-          <div className="card-footer">
-            <button className="form-control btn btn-success" onClick={handlePlayer2}>+</button>
-          </div>
-        </div>
-      </div>
+      <Player1 handleClick={handlePlayer1} />
+      <Player2 handleClick={handlePlayer2} />
     </div>
 
     { /* winner message */}
-    <h2 className="alert alert-success">Player {/* winning player here */} wins!</h2>
+    {winner !== "" ? (<h2 className="alert alert-success">Player { winner} wins!</h2>) : null}
 
-    <hr />
+    < hr />
 
     { /* reset button */}
-    <button className="btn btn-danger" onClick={handleReset}>Reset</button>
+    < button className="btn btn-danger" onClick={handleReset}>Reset</button>
   </React.Fragment >
 );
 
