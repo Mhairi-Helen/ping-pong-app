@@ -2,8 +2,9 @@ import React from "react";
 import Player1 from "./Player/Player1";
 import Player2 from "./Player/Player2";
 import Winner from "./Winner";
+import Reset from "./Reset";
 
-const App = ({ handlePlayer1, handlePlayer2, handleReset, player1Serve, winner }) => (
+const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
   <React.Fragment>
     {/* header */}
     <header className="jumbotron mt-4 mb-0">
@@ -24,7 +25,11 @@ const App = ({ handlePlayer1, handlePlayer2, handleReset, player1Serve, winner }
     < hr />
 
     { /* reset button */}
-    < button className="btn btn-danger" onClick={handleReset}>Reset</button>
+
+    <div>
+      <Reset handleClick={handleReset} />
+    </div>
+
   </React.Fragment >
 );
 
