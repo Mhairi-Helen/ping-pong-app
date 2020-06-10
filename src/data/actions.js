@@ -15,3 +15,11 @@ export const reset = () => {
         type: "RESET",
     }
 };
+
+export const saveSettings = (data) => {
+    return {
+        type: "SAVE_SETTINGS",
+        data: data,
+
+    }
+};

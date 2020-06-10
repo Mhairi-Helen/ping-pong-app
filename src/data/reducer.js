@@ -1,4 +1,5 @@
 import initialState from "./initial";
+import { saveSettings } from "./actions";
 
 const maxScore = 21;
 
@@ -23,8 +24,6 @@ const player2 = (state, action) => {
     return { ...state, player2: state.player2 + 1 }
 };
 
-
-
 //Returning the Winner!
 //The winner logic is business logic, so it should be in the reducer. The wording for the message is view logic so it should go in the component.
 
@@ -34,7 +33,6 @@ const winningScore = state => state.player1 >= maxScore || state.player2 >= maxS
 //check who the winner is
 const winningPlayer = state => state.player1 > state.player2 ? 1 : 2;
 
-// const scoreDif = state =>
 
 //return the winner!
 const winner = (state, action) => {
@@ -43,22 +41,25 @@ const winner = (state, action) => {
     }
 };
 
+//save the settings from the form
+const submitSettings = (state, action) => {
+    return {
+        ...state,
+        player1: action.data.player1Name,
+        player2: action.data.player2Name,
 
-// //Game History
+    }
+
+};
 
 
-// const history = (state, action) => {
-
-//     return {
-
-//     }
-// }
 
 
 const reducer = (state, action) => {
     switch (action.type) {
         case "PLAYER_1": return winner(setServer(player1(state)));
         case "PLAYER_2": return winner(setServer(player2(state)));
+        case "SAVE_SETTINGS": return saveSettings(state);
         case "RESET": return initialState;
         default: return state;
     }
