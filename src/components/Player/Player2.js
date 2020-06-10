@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Player from "./Player";
+import { player2 } from "../../data/actions";
 
 const mapStateToProps = (state) => {
 
@@ -13,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleClick: () => dispatch({ type: "PLAYER_2" }),
+        handleClick: () => dispatch(player2()),
     }
 };
 
