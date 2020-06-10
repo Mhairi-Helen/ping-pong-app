@@ -11,5 +11,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(Player);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleClick: () => dispatch({ type: "PLAYER_1" }),
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
 

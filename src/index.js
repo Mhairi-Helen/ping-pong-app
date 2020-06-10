@@ -12,11 +12,7 @@ import store from "./data/store";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        handlePlayer1={() => store.dispatch({ type: "PLAYER_1" })}
-        handlePlayer2={() => store.dispatch({ type: "PLAYER_2" })}
-        handleReset={() => store.dispatch({ type: "RESET" })}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -34,12 +34,25 @@ const winningScore = state => state.player1 >= maxScore || state.player2 >= maxS
 //check who the winner is
 const winningPlayer = state => state.player1 > state.player2 ? 1 : 2;
 
+// const scoreDif = state =>
+
 //return the winner!
 const winner = (state, action) => {
     return {
         ...state, winner: winningScore(state) ? winningPlayer(state) : ""
     }
 };
+
+
+// //Game History
+
+
+// const history = (state, action) => {
+
+//     return {
+
+//     }
+// }
 
 
 const reducer = (state, action) => {

@@ -2,7 +2,7 @@ import React from "react";
 import Player1 from "./Player/Player1";
 import Player2 from "./Player/Player2";
 import Winner from "./Winner";
-import Reset from "./Reset";
+import Buttons from "./Reset";
 
 const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
   <React.Fragment>
@@ -27,7 +27,7 @@ const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
     { /* reset button */}
 
     <div>
-      <Reset handleClick={handleReset} />
+      <Buttons handleClick={handleReset} />
     </div>
 
   </React.Fragment >
