@@ -16,10 +16,13 @@ export const reset = () => {
     }
 };
 
-export const saveSettings = (data) => {
+export const saveSettings = ({ player1Name, player2Name, winningScore, alternate }) => {
     return {
         type: "SAVE_SETTINGS",
-        data: data,
+        player1Name: player1Name,
+        player2Name: player2Name,
+        winningScore: +winningScore,
+        alternate: +alternate,
 
     }
 };

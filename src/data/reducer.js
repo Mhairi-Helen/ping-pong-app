@@ -1,5 +1,5 @@
 import initialState from "./initial";
-import { saveSettings } from "./actions";
+
 
 const maxScore = 21;
 
@@ -42,24 +42,22 @@ const winner = (state, action) => {
 };
 
 //save the settings from the form
-const submitSettings = (state, action) => {
+const saveSettings = (state, action) => {
     return {
         ...state,
-        player1: action.data.player1Name,
-        player2: action.data.player2Name,
-
+        player1Name: action.player1Name,
+        player2Name: action.player2Name,
+        winningScore: action.winningScore,
+        alternate: action.winningScore
     }
-
 };
-
-
 
 
 const reducer = (state, action) => {
     switch (action.type) {
         case "PLAYER_1": return winner(setServer(player1(state)));
         case "PLAYER_2": return winner(setServer(player2(state)));
-        case "SAVE_SETTINGS": return saveSettings(state);
+        case "SAVE_SETTINGS": return saveSettings(state, action);
         case "RESET": return initialState;
         default: return state;
     }

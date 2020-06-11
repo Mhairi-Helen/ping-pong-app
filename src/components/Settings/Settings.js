@@ -2,40 +2,43 @@ import React, { useState } from "react";
 
 
 
-const Settings = ({ handleSaveSettings }) => {
+const Settings = ({ handleSaveSettings, player1Name, player2Name, winningScore, alternateServe }) => {
 
     //state and event handler
     //player 1 input
-    const [player1Name, setPlayer1Name] = useState("Player1");
-    const handlePlayer1Name = (e) => setPlayer1Name(e.currentTarget.value);
+    const [player1, setPlayer1] = useState(player1Name);
+    const handlePlayer1 = (e) => setPlayer1(e.currentTarget.value);
 
     //player 2input
-    const [player2Name, setPlayer2Name] = useState("Player2");
-    const handlePlayer2Name = (e) => setPlayer2Name(e.currentTarget.value);
+    const [player2, setPlayer2] = useState(player2Name);
+    const handlePlayer2 = (e) => setPlayer2(e.currentTarget.value);
 
     //winning score input
-    const [score, setScore] = useState(21);
-    const handleScore = (e) => {
-        if (e.currentTarget.value > 0) {
-            return setScore(e.currentTarget.value);
-        } else return Error;
-    };
+    const [score, setScore] = useState(winningScore);
+    const [error, setError] = useState("");
+    const handleScore = (e) => setScore(e.currentTarget.value < 1 ? 1 : e.currentTarget.value);
 
     //alternating server
-    const [alternate, setAlternate] = useState(5);
+    const [alternate, setAlternate] = useState(alternateServe);
     const handleAlternate = (e) => setAlternate(e.currentTarget.value);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (player1.length < 1) {
+            setError("Please provide a name")
+        };
+
+        if (player2.length < 1) {
+            setError("Please provide a name")
+        };
+
         handleSaveSettings({
-            player1Name: player1Name,
-            player2Name: player2Name,
-            score: score,
+            player1Name: player1,
+            player2Name: player2,
+            winningScore: score,
             alternate: alternate,
         })
     };
-
-
 
     return (
 
@@ -48,19 +51,21 @@ const Settings = ({ handleSaveSettings }) => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group ">
                     <label for="player1">Player 1</label>
-                    <input class="form-control" type="text" name="player1" id="player1" value={player1Name} onChange={handlePlayer1Name} />
+                    <input class={"form-control " + (error ? "is-invalid" : "")} type="text" name="player1" id="player1" value={player1} onChange={handlePlayer1} />
+                    {error ? <small class="invalid-feedback">{error}</small> : null}
                 </div>
 
                 <div className="form-group">
                     <label for="player2">Player 2</label>
-                    <input className="form-control " type="text" name="player2" id="player2" value={player2Name} onChange={handlePlayer2Name} />
+                    <input className={"form-control " + (error ? "is-invalid" : "")} type="text" name="player2" id="player2" value={player2} onChange={handlePlayer2} />
+                    {error ? <small class="invalid-feedback" >{error}</small> : null}
 
                 </div>
 
                 <div className="form-group">
                     <label for="score">Winning Score</label>
-                    <input className={"form-control " + (handleSaveSettings.score > 0 ? "" : "is-invalid")} type="number" name="score" id="score" value={score} onChange={handleScore} required />
-                    {handleSaveSettings.score > 0 ? null : <small class="invalid-feedback">Please provide a number above 0</small>}
+                    <input className="form-control" type="number" name="score" id="score" value={score} onChange={handleScore} required />
+
                 </div>
 
                 <div className="form-group">
