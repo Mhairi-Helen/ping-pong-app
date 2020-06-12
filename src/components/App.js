@@ -10,6 +10,9 @@ import Player2 from "./Player/Player2";
 import Winner from "./Winner";
 import Buttons from "./Reset";
 import Settings from "./Settings";
+import History from "./History";
+import NavSet from "./Nav/NavSet";
+import NavScore from "./Nav/NavScore";
 
 const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
   <React.Fragment>
@@ -18,7 +21,11 @@ const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
       <header className="jumbotron mt-4 mb-0">
         <h1>PongPing</h1>
       </header>
+
       <Route exact path="/">
+        {/* navbar */}
+        <NavScore />
+
         {/* scores */}
         <div className="row mb-4">
           <Player1 handleClick={handlePlayer1} />
@@ -35,9 +42,17 @@ const App = ({ handlePlayer1, handlePlayer2, handleReset, winner }) => (
         <div>
           <Buttons handleClick={handleReset} />
         </div>
+
+        <div>
+          <History />
+        </div>
       </Route>
 
       <Route exact path="/settings">
+
+        {/* navbar */}
+        <NavSet />
+
         {/* form */}
         <div className="row mb-4">
           <Settings />

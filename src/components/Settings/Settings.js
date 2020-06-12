@@ -78,7 +78,7 @@ const Settings = ({ handleSaveSettings, player1Name, player2Name, winningScore, 
                 </div>
 
                 <section className="submission">
-                    <button className="btn btn-primary" type="submit" name="Submit">Submit</button>
+                    <button className="btn btn-primary" type="submit" name="Submit"><a href="/" style={{ color: "white" }}>Submit</a></button>
                 </section>
             </form>
         </div>

@@ -1,9 +1,6 @@
 import initialState from "./initial";
 
 
-const maxScore = 21;
-
-
 //Changing the Server
 
 const setServer = (state, action) => {
@@ -28,10 +25,10 @@ const player2 = (state, action) => {
 //The winner logic is business logic, so it should be in the reducer. The wording for the message is view logic so it should go in the component.
 
 //check if there is a winner
-const winningScore = state => state.player1 >= maxScore || state.player2 >= maxScore;
+const winningScore = state => state.player1 >= state.winningScore || state.player2 >= state.winningScore;
 
 //check who the winner is
-const winningPlayer = state => state.player1 > state.player2 ? 1 : 2;
+const winningPlayer = state => state.player1 > state.player2 ? state.player1Name : state.player2Name;
 
 
 //return the winner!
@@ -48,9 +45,21 @@ const saveSettings = (state, action) => {
         player1Name: action.player1Name,
         player2Name: action.player2Name,
         winningScore: action.winningScore,
-        alternate: action.winningScore
+        alternate: action.alternate
     }
 };
+
+//reset the scores and return settings page
+const reset = (state, action) => {
+    return {
+        ...state,
+        player1: 0,
+        player2: 0,
+        player1Serve: true,
+        winner: '',
+    }
+}
+
 
 
 const reducer = (state, action) => {
@@ -58,7 +67,7 @@ const reducer = (state, action) => {
         case "PLAYER_1": return winner(setServer(player1(state)));
         case "PLAYER_2": return winner(setServer(player2(state)));
         case "SAVE_SETTINGS": return saveSettings(state, action);
-        case "RESET": return initialState;
+        case "RESET": return reset(state, action);
         default: return state;
     }
 };

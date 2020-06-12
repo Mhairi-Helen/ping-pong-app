@@ -1,19 +1,19 @@
 import { connect } from "react-redux";
-import Player from "./History";
+import History from "./History";
 
 const mapStateToProps = (state) => {
 
+
+
     return {
         game: state.game,
-        player_1: {
-            score: state.score,
-            won: state.won,
-        },
+        player1Name: state.player1Name,
+        score1: state.score1,
+        player2Name: state.player2Name,
+        score2: state.score,
+        winner: state.winnerName,
+    }
 
-        player_2: {
-            score: state.score,
-            won: state.won,
-        }
-    };
+};
 
-    export default connect(mapStateToProps)(History);
+export default connect(mapStateToProps)(History);
